@@ -1,0 +1,140 @@
+/* =============================================
+   GALERÍA 3D - 10 IMÁGENES
+   ============================================= */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0B0B0F;
+  color: #e0e0e0;
+  font-family: 'Georgia', serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título */
+.gallery-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: #C9A962;
+  margin: 3rem 0 2rem;
+  text-shadow: 0 0 20px rgba(201, 169, 98, 0.4);
+  text-align: center;
+}
+
+/* Contenedor del carrusel */
+.carousel-container {
+  margin: 4% auto;
+  width: 300px;
+  height: 200px;
+  position: relative;
+  perspective: 1200px;
+}
+
+#carousel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  animation: rotation 30s infinite linear;
+}
+
+#carousel:hover {
+  animation-play-state: paused;
+}
+
+/* Cada figura */
+#carousel figure {
+  display: block;
+  position: absolute;
+  width: 260px;
+  height: 160px;
+  left: 20px;
+  top: 20px;
+  background: #000;
+  overflow: hidden;
+  border: 6px solid #2D1B4E;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  transition: all 0.5s ease;
+}
+
+#carousel figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.7) brightness(0.8);
+  transition: all 0.5s ease;
+}
+
+#carousel figure:hover img {
+  filter: grayscale(0) brightness(1);
+  transform: scale(1.15);
+}
+
+/* Posiciones 3D para 10 figuras */
+#carousel figure:nth-child(1)  { transform: rotateY(0deg)   translateZ(400px); }
+#carousel figure:nth-child(2)  { transform: rotateY(36deg)  translateZ(400px); }
+#carousel figure:nth-child(3)  { transform: rotateY(72deg)  translateZ(400px); }
+#carousel figure:nth-child(4)  { transform: rotateY(108deg) translateZ(400px); }
+#carousel figure:nth-child(5)  { transform: rotateY(144deg) translateZ(400px); }
+#carousel figure:nth-child(6)  { transform: rotateY(180deg) translateZ(400px); }
+#carousel figure:nth-child(7)  { transform: rotateY(216deg) translateZ(400px); }
+#carousel figure:nth-child(8)  { transform: rotateY(252deg) translateZ(400px); }
+#carousel figure:nth-child(9)  { transform: rotateY(288deg) translateZ(400px); }
+#carousel figure:nth-child(10) { transform: rotateY(324deg) translateZ(400px); }
+
+/* Animación */
+@keyframes rotation {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+/* Footer */
+.gallery-footer {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #666;
+  font-style: italic;
+  margin-top: auto;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel-container {
+    width: 240px;
+    height: 160px;
+  }
+  #carousel figure {
+    width: 200px;
+    height: 120px;
+    left: 20px;
+    top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    width: 200px;
+    height: 130px;
+  }
+  #carousel figure {
+    width: 160px;
+    height: 100px;
+    left: 20px;
+    top: 15px;
+  }
+  .gallery-title {
+    font-size: 1.8rem;
+  }
+}

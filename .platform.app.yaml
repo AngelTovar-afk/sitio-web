@@ -1,0 +1,40 @@
+name: app
+type: php:8.2
+
+build:
+  flavor: composer
+
+web:
+  locations:
+    "/":
+      root: "public"
+      passthru: "/index.php"
+      index:
+        - index.php
+      allow: false
+      rules:
+        '\.(css|js|gif|jpe?g|png|svg|ico|woff2?|ttf|eot)$':
+          allow: true
+    "/build":
+      root: "public/build"
+      allow: true
+
+disk: 2048
+
+mounts:
+  "/storage":
+    source: local
+    source_path: storage
+  "/bootstrap/cache":
+    source: local
+    source_path: cache
+
+hooks:
+  build: |
+    set -e
+    composer install --no-dev --optimize-autoloader
+  deploy: |
+    set -e
+    php artisan config:cache
+    php artisan route:cache
+    php artisan view:cache
